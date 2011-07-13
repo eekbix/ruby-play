@@ -2,6 +2,11 @@
   <li title="<%= comment.created_at %>">
     <%= comment.body %> 
     <em>~ <%= comment.commenter %></em>
+
+    <%= link_to '(destroy)', [comment.post, comment],
+          :confirm => "Are you sure?",
+          :method => :delete
+    %>
   </li>
 </ul>
 
