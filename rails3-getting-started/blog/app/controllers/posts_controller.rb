@@ -33,7 +33,6 @@ class PostsController < ApplicationController
     ### of the actual url.
     
     @post = Post.find(params[:id])
-    @comments = @post.comments
 
     respond_to do |format|
       ### What exactly are these? method calls with parens omitted?

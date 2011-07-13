@@ -17,7 +17,7 @@
 
 <h2>Comments</h2>
 <ul>
-  <% @comments.each do |c| %>
+  <% @post.comments.each do |c| %>
     <li title="<%= c.created_at %>"><%= c.body %> <em>~ <%= c.commenter %></em></li>
   <% end %>
 </ul>
