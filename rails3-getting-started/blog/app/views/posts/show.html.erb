@@ -17,9 +17,8 @@
 
 <h2>Comments</h2>
 <ul>
-  <% @post.comments.each do |c| %>
-    <li title="<%= c.created_at %>"><%= c.body %> <em>~ <%= c.commenter %></em></li>
-  <% end %>
+  <%= render :partial => "comments/comment",
+             :collection => @post.comments %>
 </ul>
 
 
