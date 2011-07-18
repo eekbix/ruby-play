@@ -9,3 +9,7 @@ rails3-getting-started
 
 * After completing a quick Ruby tutorial, I'm following the Rails tutorial, at http://guides.rubyonrails.org/getting_started.html
 
+rack-play
+---
+
+* This is from chapter 2 of TekPub's screncasts of Ruby on Rails, where we explore Rack.
