@@ -1,7 +1,14 @@
 require "./lamework"
+require "./models/quote"
 
-class MyApp < Lamework
+class QuotesApp < Lamework
+  def initialize()
+    get("index", :quote => Quote.new.random)
+  end  
+end
+
+class HelloApp < Lamework
   def initialize()
     get("index", :quote => "Hello world")
-  end
+  end  
 end

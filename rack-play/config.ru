@@ -1,5 +1,10 @@
-require "./quote_filter"
 require "./app"
 
-use QuoteFilter
-run MyApp.new
+map '/' do
+  run QuotesApp.new  
+end
+
+map '/hello' do
+  run HelloApp.new  
+end
+
