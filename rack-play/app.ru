@@ -24,18 +24,23 @@ class Lamework
 end
 
 class QuoteFilter
-  def initialize(app = nil)
-    #get("index", :quote => Quote.new.random)
+  def initialize(app = nil)  
     @app = app
   end
-  
+   
   def call(env)
-    response = []
-    if (@app)
-      response = @app.call(env)[2]
-    end
-    response.push("<p>#{Quote.new.random}</p>")
-    ["200", {"Content-Type" => "text/html"}, response]    
+    status, headers, @response = @app.call(env) 
+    
+    # This is *way* too clever. Since the response will have "each"
+    # called on it, just implement "each" on this instance and pass
+    # "self".     
+    [status, headers, self]       
+  end
+  
+  # I still don't understand: what is the block passed in here?  
+  def each(&block)
+    block.call("<p>#{Quote.new.random}</p>")
+    @response.each(&block) 
   end
 end
 
@@ -45,5 +50,6 @@ class MyApp < Lamework
   end
 end
 
+
 use QuoteFilter
-run MyApp.new()
+run MyApp.new
