@@ -1,3 +1,7 @@
+require "haml"
+require "./quote" # ugly. does this video predate Ruby 1.9?
+
+
 # An example of middleware. Think ASP.NET Tracing.
 class EnvironmentOutput
   def initialize(app = nil)
@@ -23,8 +27,15 @@ end
 
 class MyApp
   def call(env)
+    quote = Quote.new.random
+    template = File.open("views/index.haml").read
+    engine = Haml::Engine.new(template)
+    
+    # engine.render(scope, params...)
+    out = engine.render(Object.new, :quote => quote)  
+
     # Observation: ...body must be string type here
-    ["200", {"Content-Type" => "text/html"}, "<h1>Hello there!</h1>"]
+    ["200", {"Content-Type" => "text/html"}, out]
   end
 end
 
